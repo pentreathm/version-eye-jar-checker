@@ -1,0 +1,38 @@
+{
+  "query": {
+    "q": "runtime",
+    "lang": [
+      "Java"
+    ],
+    "g": "org.antlr"
+  },
+  "results": [
+    {
+      "name": "antlr-runtime",
+      "language": "java",
+      "prod_key": "org.antlr/antlr-runtime",
+      "version": "3.5.2",
+      "prod_type": "Maven2"
+    },
+    {
+      "name": "antlr4-runtime",
+      "language": "java",
+      "prod_key": "org.antlr/antlr4-runtime",
+      "version": "4.5.1-1",
+      "prod_type": "Maven2"
+    },
+    {
+      "name": "antlr4-runtime-testsuite",
+      "language": "java",
+      "prod_key": "org.antlr/antlr4-runtime-testsuite",
+      "version": "4.5.1-1",
+      "prod_type": "Maven2"
+    }
+  ],
+  "paging": {
+    "current_page": 1,
+    "per_page": 30,
+    "total_pages": 1,
+    "total_entries": 3
+  }
+}

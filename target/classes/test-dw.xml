@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns:metadata="http://www.mulesoft.org/schema/mule/metadata" xmlns:dw="http://www.mulesoft.org/schema/mule/ee/dw" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
+http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd">
+    <http:listener-config name="HTTP_Listener_Configuration" host="0.0.0.0" port="8082" doc:name="HTTP Listener Configuration"/>
+    <http:request-config name="VersionEye" host="versioneye.com" port="443" basePath="/api/v2/" doc:name="HTTP Request Configuration" protocol="HTTPS"/>
+    <db:mysql-config name="MySQL" host="172.16.23.113" port="3306" user="root" password="mulemanishere" database="test" doc:name="MySQL Configuration"/>
+    <flow name="GetLicInfo">
+        <choice doc:name="Choice">
+            <when expression="#[payload.product_key==&quot;&quot;]">
+                <logger message="Jar not found in DB: #[flowVars.jarName]" level="INFO" doc:name="Log Lic not found"/>
+            </when>
+            <when expression="#[payload.product_key != &quot;&quot;]">
+                <http:request config-ref="VersionEye" path="products/java/#[payload.product_key]" method="GET" metadata:id="897d0a8c-5a52-4a66-b378-f5adcf8a8bcd" doc:name="VersionEye: Search Lic">
+                    <http:request-builder>
+                        <http:query-param paramName="api_key" value="be080fc054c8833bda55"/>
+                    </http:request-builder>
+                </http:request>
+                <logger message="Jar File:  #[flowVars.jarName]  - Lic search was #[message.payloadAs(String)]" level="INFO" doc:name="Log license result"/>
+            </when>
+        </choice>
+        <dw:transform-message doc:name="Lic info per Jar">
+            <dw:input-payload doc:sample="json_1.json"/>
+            <dw:set-payload><![CDATA[%dw 1.0
+%output application/json
+---
+{
+	jarName: flowVars.jarName, 
+	license_info: payload.license_info default "License Not Found" as :string, 
+	licenses: payload.licenses default "License Not Found"
+}]]></dw:set-payload>
+        </dw:transform-message>
+        <logger message="#[message.payloadAs(java.lang.String)]" level="INFO" doc:name="Logger"/>
+        <choice doc:name="Choice">
+            <when expression="#[dw('payload.license_info') == &quot;License Not Found&quot; || dw('payload.license_info') == &quot;unknown&quot;]">
+                <file:outbound-endpoint path="src/test/resources/output/no/lic" outputPattern="#[flowVars.jarName].json" responseTimeout="10000" doc:name="Jars without License"/>
+            </when>
+            <otherwise>
+                <dw:transform-message doc:name="Transform Message">
+                    <dw:set-payload><![CDATA[%dw 1.0
+%output application/java
+---
+{
+		"license_info": payload.license_info,
+		"jarName": payload.jarName
+}]]></dw:set-payload>
+                </dw:transform-message>
+                <set-variable variableName="licenseName" value="#[payload.license_info]" doc:name="LicenseName"/>
+                <set-variable variableName="jarNamePayload" value="#[payload.jarName]" doc:name="jarName"/>
+                <db:insert config-ref="MySQL" doc:name="Insert Jar-License">
+                    <db:parameterized-query><![CDATA[INSERT IGNORE
+INTO versioneye_test (JarName, LicenseName)
+VALUES (#[flowVars.jarNamePayload], #[flowVars.licenseName])]]></db:parameterized-query>
+                </db:insert>
+            </otherwise>
+        </choice>
+    </flow>
+    <flow name="VersionEyeFlow">
+        <set-payload value="#[org.mule.JarFinder.getJars('/Users/ms0202/Documents/plugins')]" doc:name="Get Jar file Names"/>
+        <logger message="Jars to find #[payload.size()]" level="INFO" doc:name="Logger"/>
+        <collection-splitter enableCorrelation="ALWAYS" doc:name="Collection Splitter"/>
+        <logger message="Start Processing #[payload]" level="INFO" doc:name="Log File Name"/>
+        <set-variable variableName="jarName" value="#[payload]" doc:name="Variable"/>
+        <choice doc:name="Choice">
+            <when expression="#[!org.mule.JarFinder.exists(flowVars.jarName)]">
+                <dw:transform-message doc:name="Parse Jar">
+                    <dw:input-payload doc:sample="MyPojo.dwl"/>
+                    <dw:set-payload><![CDATA[%dw 1.0
+%output application/java
+//%output application/json
+---
+//com.google.gson_2.1.0.v201303041604.jar
+//com.ibm.icu_52.1.1.v201501240615.jar
+//jackson-core-asl_1.8.3.jar
+//org.antlr.runtime_3.2.0.v201101311130.jar
+//mysql-connector-java-5.1.22-bin.jar
+
+using (matchRuslt = payload scan /([a-z-\.]*)\.([0-9a-z-]+)_([0-9\.]*)\. / ) {
+	name: matchRuslt[0][2],
+	groupId: matchRuslt[0][1],
+	version: matchRuslt[0][3]
+} when not matchRuslt is :empty otherwise using (matchRuslt = payload scan /([0-9a-z-]+)_([0-9\.]*)\. / ) {
+	name: matchRuslt[0][1],
+	groupId: null,
+	version: matchRuslt[0][2]
+}]]></dw:set-payload>
+                </dw:transform-message>
+                <http:request config-ref="VersionEye" path="products/search/{q}" method="GET" metadata:id="ed85933b-ae55-401b-9858-a80bb617b1e6" doc:name="VersionEye: Search Product">
+                    <http:request-builder>
+                        <http:query-param paramName="lang" value="java"/>
+                        <http:query-param paramName="api_key" value="be080fc054c8833bda55"/>
+                        <http:query-param paramName="g" value="#[payload.groupId]"/>
+                        <http:uri-param paramName="q" value="#[payload.name]"/>
+                    </http:request-builder>
+                </http:request>
+                <logger message="Product search was #[message.payloadAs(String)]" level="INFO" doc:name="Product Search Result"/>
+                <dw:transform-message doc:name="Search Lic Call">
+                    <dw:input-payload doc:sample="json.json"/>
+                    <dw:set-payload><![CDATA[%dw 1.0
+%output application/java
+---
+
+using (result = payload.results[0] default { 
+		prod_key: ""
+	}) {
+	product_key: (result.prod_key replace "." with "~") replace "/" with ":"	
+} 
+]]></dw:set-payload>
+                </dw:transform-message>
+                <flow-ref name="GetLicInfo" doc:name="Flow Reference"/>
+            </when>
+            <otherwise>
+                <logger message="#[flowVars.jarName] Already processed" level="INFO" doc:name="Logger"/>
+            </otherwise>
+        </choice>
+        
+    </flow>
+    <flow name="test-dwFlow">
+        <http:listener config-ref="HTTP_Listener_Configuration" path="/" doc:name="HTTP"/>
+        <async doc:name="Async">
+            <flow-ref name="VersionEyeFlow" doc:name="Flow Reference"/>
+        </async>
+        <set-payload value="Your request is being processed" doc:name="Set Payload"/>
+    </flow>
+    <flow name="getJarsOf">
+        <http:listener config-ref="HTTP_Listener_Configuration" path="/jars" doc:name="HTTP"/>
+        <db:select config-ref="MySQL" doc:name="Database">
+            <db:parameterized-query><![CDATA[SELECT * FROM test.versioneye_test v]]></db:parameterized-query>
+        </db:select>
+        <dw:transform-message doc:name="Transform Message">
+            <dw:set-payload><![CDATA[%dw 1.0
+%output application/json
+---
+{
+	jars: payload filter ($.licenseName == inboundProperties.'http.query.params'.license) map {
+		jarName: $.jarName
+	} 
+}]]></dw:set-payload>
+        </dw:transform-message>
+    </flow>
+</mule>

@@ -1,0 +1,10 @@
+{
+  "jarName": "org.apache.lucene.core_3.5.0.v20120725-1805.jar",
+  "license_info": "Apache-2.0",
+  "licenses": [
+    {
+      "name": "Apache 2",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.txt"
+    }
+  ]
+}

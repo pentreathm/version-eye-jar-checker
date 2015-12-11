@@ -1,0 +1,10 @@
+{
+  "jarName": "com.sun.jersey_1.17.0.v20130314-2020.jar",
+  "license_info": "CDDL+GPL",
+  "licenses": [
+    {
+      "name": "CDDL+GPL License",
+      "url": "https://jersey.dev.java.net/CDDL+GPL.html"
+    }
+  ]
+}

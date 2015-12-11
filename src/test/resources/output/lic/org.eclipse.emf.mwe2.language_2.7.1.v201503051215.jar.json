@@ -1,0 +1,10 @@
+{
+  "jarName": "org.eclipse.emf.mwe2.language_2.7.1.v201503051215.jar",
+  "license_info": "Modified BSD License",
+  "licenses": [
+    {
+      "name": "Modified BSD License",
+      "url": "https://github.com/bobbylight/RSTALanguageSupport/blob/master/RSTALanguageSupport.License.txt"
+    }
+  ]
+}

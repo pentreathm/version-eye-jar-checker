@@ -1,0 +1,14 @@
+{
+  "jarName": "jackson-jaxrs_1.8.3.jar",
+  "license_info": "Apache-2.0, LGPL-2.1",
+  "licenses": [
+    {
+      "name": "The Apache Software License, Version 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.txt"
+    },
+    {
+      "name": "GNU Lesser General Public License (LGPL), Version 2.1",
+      "url": "http://www.fsf.org/licensing/licenses/lgpl.txt"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+    "inputMessageMetadata": {},
+    "outputMessageMetadata": {
+        "messagePayload": {
+            "connectorName": "#_custom_mule_metadata_type_#",
+            "typeId": "lic-response"
+        }
+    },
+    "id": "897d0a8c-5a52-4a66-b378-f5adcf8a8bcd",
+    "version": "5.2.0.0"
+}

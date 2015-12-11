@@ -1,0 +1,10 @@
+{
+  "jarName": "org.eclipse.core.commands_3.6.100.v20140528-1422.jar",
+  "license_info": "EPL-1.0",
+  "licenses": [
+    {
+      "name": "Eclipse Public License - v 1.0",
+      "url": "http://www.eclipse.org/org/documents/epl-v10.html"
+    }
+  ]
+}

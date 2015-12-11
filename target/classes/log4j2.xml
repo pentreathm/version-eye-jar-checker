@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Configuration>
+  <Appenders>
+    <Console name="console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%-5p %d [%t] %c: %m%n" />
+    </Console>
+  </Appenders>
+  <Loggers>
+  	<!--Logger name="org.mule.module.http.internal.HttpMessageLogger" level="debug" /-->
+    <AsyncLogger name="org.apache" level="WARN" />
+    <AsyncLogger name="org.springframework.beans.factory" level="WARN" />
+    <AsyncLogger name="org.mule" level="INFO" />
+    <AsyncLogger name="org.apache.cxf" level="WARN" />
+    <AsyncRoot level="INFO">
+      <AppenderRef ref="console" />
+    </AsyncRoot>
+  </Loggers>
+</Configuration>

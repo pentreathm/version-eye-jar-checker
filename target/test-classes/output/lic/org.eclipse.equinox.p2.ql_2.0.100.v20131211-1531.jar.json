@@ -1,0 +1,10 @@
+{
+  "jarName": "org.eclipse.equinox.p2.ql_2.0.100.v20131211-1531.jar",
+  "license_info": "Apache-2.0",
+  "licenses": [
+    {
+      "name": "The Apache Software License, Version 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.txt"
+    }
+  ]
+}

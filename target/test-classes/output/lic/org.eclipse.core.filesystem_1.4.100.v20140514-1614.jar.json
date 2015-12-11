@@ -1,0 +1,10 @@
+{
+  "jarName": "org.eclipse.core.filesystem_1.4.100.v20140514-1614.jar",
+  "license_info": "EPL-1.0",
+  "licenses": [
+    {
+      "name": "Eclipse Public License - v 1.0",
+      "url": "http://www.eclipse.org/org/documents/epl-v10.html"
+    }
+  ]
+}

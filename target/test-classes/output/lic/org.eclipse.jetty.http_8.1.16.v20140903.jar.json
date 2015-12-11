@@ -1,0 +1,14 @@
+{
+  "jarName": "org.eclipse.jetty.http_8.1.16.v20140903.jar",
+  "license_info": "Apache-2.0, EPL-1.0",
+  "licenses": [
+    {
+      "name": "Apache Software License - Version 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "name": "Eclipse Public License - Version 1.0",
+      "url": "http://www.eclipse.org/org/documents/epl-v10.php"
+    }
+  ]
+}

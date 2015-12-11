@@ -1,0 +1,10 @@
+{
+  "jarName": "com.jcraft.jsch_0.1.51.v201410302000.jar",
+  "license_info": "BSD-3-Clause",
+  "licenses": [
+    {
+      "name": "Revised BSD",
+      "url": "http://www.jcraft.com/jsch/LICENSE.txt"
+    }
+  ]
+}

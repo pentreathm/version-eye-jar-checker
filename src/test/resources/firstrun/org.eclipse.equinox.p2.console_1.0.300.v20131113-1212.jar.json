@@ -1,0 +1,10 @@
+{
+  "jarName": "org.eclipse.equinox.p2.console_1.0.300.v20131113-1212.jar",
+  "license_info": "LGPL-2.1",
+  "licenses": [
+    {
+      "name": "GNU Lesser General Public License Version 2.1",
+      "url": "http://www.gnu.org/licenses/lgpl.html"
+    }
+  ]
+}

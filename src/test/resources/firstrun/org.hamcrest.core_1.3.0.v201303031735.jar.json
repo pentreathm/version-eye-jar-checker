@@ -1,0 +1,10 @@
+{
+  "jarName": "org.hamcrest.core_1.3.0.v201303031735.jar",
+  "license_info": "BSD-3-Clause",
+  "licenses": [
+    {
+      "name": "New BSD License",
+      "url": "http://www.opensource.org/licenses/bsd-license.php"
+    }
+  ]
+}

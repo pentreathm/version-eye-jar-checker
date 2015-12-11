@@ -1,0 +1,10 @@
+{
+  "jarName": "com.ibm.icu_52.1.1.v201501240615.jar",
+  "license_info": "ICU",
+  "licenses": [
+    {
+      "name": "ICU License",
+      "url": "http://source.icu-project.org/repos/icu/icu/trunk/license.html"
+    }
+  ]
+}

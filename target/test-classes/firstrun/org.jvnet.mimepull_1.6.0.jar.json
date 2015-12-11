@@ -1,0 +1,10 @@
+{
+  "jarName": "org.jvnet.mimepull_1.6.0.jar",
+  "license_info": "CDDL+GPLv2 with classpath exception",
+  "licenses": [
+    {
+      "name": "Dual license consisting of the CDDL v1.1 and GPL v2",
+      "url": "https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html"
+    }
+  ]
+}

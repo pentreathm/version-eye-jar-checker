@@ -1,0 +1,10 @@
+{
+  "jarName": "org.eclipse.equinox.p2.directorywatcher_1.1.0.v20131211-1531.jar",
+  "license_info": "DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE",
+  "licenses": [
+    {
+      "name": "DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE",
+      "url": "http://www.wtfpl.net/txt/copying/"
+    }
+  ]
+}

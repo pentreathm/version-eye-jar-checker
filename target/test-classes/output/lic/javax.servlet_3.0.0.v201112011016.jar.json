@@ -1,0 +1,10 @@
+{
+  "jarName": "javax.servlet_3.0.0.v201112011016.jar",
+  "license_info": "CDDL+GPLv2 with classpath exception",
+  "licenses": [
+    {
+      "name": "CDDL + GPLv2 with classpath exception",
+      "url": "https://glassfish.dev.java.net/nonav/public/CDDL+GPL.html"
+    }
+  ]
+}

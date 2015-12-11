@@ -1,0 +1,10 @@
+{
+  "jarName": "org.eclipse.core.expressions_3.4.600.v20140128-0851.jar",
+  "license_info": "EPL-1.0",
+  "licenses": [
+    {
+      "name": "Eclipse Public License - v 1.0",
+      "url": "http://www.eclipse.org/org/documents/epl-v10.html"
+    }
+  ]
+}

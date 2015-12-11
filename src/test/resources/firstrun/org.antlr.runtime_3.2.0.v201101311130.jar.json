@@ -1,0 +1,10 @@
+{
+  "jarName": "org.antlr.runtime_3.2.0.v201101311130.jar",
+  "license_info": "BSD",
+  "licenses": [
+    {
+      "name": "BSD licence",
+      "url": "http://antlr.org/license.html"
+    }
+  ]
+}

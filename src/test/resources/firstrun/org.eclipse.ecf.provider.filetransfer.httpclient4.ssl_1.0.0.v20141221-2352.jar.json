@@ -1,0 +1,10 @@
+{
+  "jarName": "org.eclipse.ecf.provider.filetransfer.httpclient4.ssl_1.0.0.v20141221-2352.jar",
+  "license_info": "Apache-1.1",
+  "licenses": [
+    {
+      "name": "Apache Software License, Version 1.1",
+      "url": "http://www.apache.org/licenses/LICENSE-1.1"
+    }
+  ]
+}

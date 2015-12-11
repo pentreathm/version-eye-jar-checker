@@ -1,0 +1,56 @@
+{
+  "name": "antlr-runtime",
+  "language": "java",
+  "prod_key": "org.antlr/antlr-runtime",
+  "version": "3.5.2",
+  "prod_type": "Maven2",
+  "group_id": "org.antlr",
+  "artifact_id": "antlr-runtime",
+  "license_info": "BSD",
+  "description": "A framework for constructing recognizers, compilers, and translators from grammatical descriptions containing Java, C#, C++, or Python actions.",
+  "updated_at": "2015-09-09T18:25:30.847Z",
+  "released_at": "2014-03-25T12:04:06.000+00:00",
+  "dependencies": [],
+  "licenses": [
+    {
+      "name": "BSD licence",
+      "url": "http://antlr.org/license.html"
+    }
+  ],
+  "links": [
+    {
+      "name": "Link to Repo",
+      "link": "http://gradle.artifactoryonline.com/gradle/libs/org/antlr/antlr-runtime/"
+    },
+    {
+      "name": "Link to Repository",
+      "link": "http://repo.typesafe.com/typesafe/releases/org/antlr/antlr-runtime/"
+    },
+    {
+      "name": "Link to Repository",
+      "link": "http://search.maven.org/#browse|1459919460"
+    },
+    {
+      "name": "Link to Repository",
+      "link": "http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.antlr%22%20AND%20a%3A%22antlr-runtime%22"
+    }
+  ],
+  "archives": [
+    {
+      "name": "antlr-runtime-3.5.2-javadoc.jar",
+      "link": "http://search.maven.org/remotecontent?filepath=org/antlr/antlr-runtime/3.5.2/antlr-runtime-3.5.2-javadoc.jar"
+    },
+    {
+      "name": "antlr-runtime-3.5.2-sources.jar",
+      "link": "http://search.maven.org/remotecontent?filepath=org/antlr/antlr-runtime/3.5.2/antlr-runtime-3.5.2-sources.jar"
+    },
+    {
+      "name": "antlr-runtime-3.5.2.jar",
+      "link": "http://search.maven.org/remotecontent?filepath=org/antlr/antlr-runtime/3.5.2/antlr-runtime-3.5.2.jar"
+    },
+    {
+      "name": "antlr-runtime-3.5.2.pom",
+      "link": "http://search.maven.org/remotecontent?filepath=org/antlr/antlr-runtime/3.5.2/antlr-runtime-3.5.2.pom"
+    }
+  ]
+}

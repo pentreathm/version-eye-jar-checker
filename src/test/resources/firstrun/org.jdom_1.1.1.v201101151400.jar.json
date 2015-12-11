@@ -1,0 +1,10 @@
+{
+  "jarName": "org.jdom_1.1.1.v201101151400.jar",
+  "license_info": "Apache-2.0",
+  "licenses": [
+    {
+      "name": "Similar to Apache License but with the acknowledgment clause removed",
+      "url": "https://raw.github.com/hunterhacker/jdom/master/LICENSE.txt"
+    }
+  ]
+}

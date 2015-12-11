@@ -1,0 +1,10 @@
+{
+  "jarName": "org.eclipse.equinox.app_1.3.200.v20130910-1609.jar",
+  "license_info": "EPL-1.0",
+  "licenses": [
+    {
+      "name": "Eclipse Public License - v 1.0",
+      "url": "http://www.eclipse.org/org/documents/epl-v10.html"
+    }
+  ]
+}
